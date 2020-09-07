@@ -1,4 +1,4 @@
-# Trashtalks
+# Todo.it
 SEI 23 - Project 4
 
 #### [Wireframes]
