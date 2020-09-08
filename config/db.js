@@ -4,7 +4,7 @@ const mongoose = require("mongoose");
 
 // connect to mongoose
 mongoose.connect(
-    process.env.MONGODB,
+    process.env.MONGOLIVE,
     {
         useCreateIndex: true,
         useNewUrlParser: true,
