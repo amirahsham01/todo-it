@@ -10,7 +10,8 @@ const path = require("path");
 // add all middleware
 require("./config/db");
 app.use(express.json());
-app.use(express.static("frontend/build"))
+// app.use(express.static("frontend/build"))
+app.use(express.static(path.join(__dirname, 'frontend/build')));
 app.use(cors());
 
 // setup my routes
@@ -25,12 +26,15 @@ app.use("/api/todos/comments", require("./routes/comment.route"));
 // });
 
 //added some more
-app.get('/*', function (req, res) {
-    const index = path.join(__dirname, 'build', 'index.html');
-    res.sendFile(index);
+// app.get('/*', function (req, res) {
+//     const index = path.join(__dirname, 'build', 'index.html');
+//     res.sendFile(index);
+// });
+app.get('/*', (req,res) =>{
+    res.sendFile(path.join(__dirname+'/frontend/build/index.html'));
 });
 
 // setup the server port
-app.listen(process.env.PORT, () =>
-    console.log(`running on ${process.env.PORT}`)
+app.listen(port, () =>
+    console.log(`running on ${port}`)
 )
