@@ -25,7 +25,7 @@ app.use("/api/todos/comments", require("./routes/comment.route"));
 // });
 
 //added some more
-app.get('*', function (req, res) {
+app.get('/*', function (req, res) {
     const index = path.join(__dirname, 'build', 'index.html');
     res.sendFile(index);
 });
