@@ -10,7 +10,8 @@ const checkToken = require("../config/config");
 */
 router.get("/:id", async (req, res) => {
     try {
-        let comment = await Comment.findById(req.params.id);
+        let comment = await Comment.findById(req.params.id)
+        .populate("author");
 
         res.status(200).json({
             message: "comment found",
@@ -55,18 +56,14 @@ router.post("/", checkToken, async (req, res) => {
       let comment = new Comment(req.body);
       comment.author = req.user.id;
 
-      let savedComment = await comment
-      .save()
-      .then(() => {
-        Todo.findById(req.params.id).then((todo) => {
-          // console.log(todo);
-            todo.comments.push(comment._id);
-            todo.save();
-        })
-      })
-      .catch((err) => {
-        console.log(err)
-      })
+      let savedComment = await comment.save();
+      // let todo = await Todo.findById(req.params.id);
+
+      // if (savedComment) {
+      //   console.log(req.params);
+      //   todo.comments.push(comment._id);
+      //   todo.save();
+      // }
   
       res.status(201).json({
         message: "comment posted",

@@ -2,6 +2,7 @@ const router = require("express").Router();
 const Todo = require("../models/todo.model");
 const checkToken = require("../config/config");
 const User = require("../models/user.model");
+const Comment = require("../models/comment.model");
 
 /* 
     @route GET api/todos/:id
@@ -10,7 +11,9 @@ const User = require("../models/user.model");
 */
 router.get("/:id", async (req, res) => {
     try {
-        let todo = await Todo.findById(req.params.id);
+        let todo = await Todo.findById(req.params.id)
+        .populate("author")
+        .populate("comments")
 
         res.status(200).json({
             message: "todo found",

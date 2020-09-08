@@ -112,7 +112,7 @@ export default class Todo extends Component {
                             <Button onClick={this.deleteTodo} variant="danger" id={todo._id}>Delete</Button>
                             <Button onClick={this.showEdit}>Edit Todo</Button>
                             {edit && <EditTodo todo={todo} editTodo={this.editTodo} />}
-                            <Comment/>
+                            <Comment todo={todo} editTodo={this.editTodo}/>
                         </div>
                     ) : ("error leh")}
                 </div>
