@@ -104,10 +104,12 @@ router.post("/", checkToken, async (req, res) => {
 */
 router.get("/", checkToken, async (req, res) => {
     try {
-        //get all todos
-        let todos = await Todo.find()
-            .populate("author")
-            // .populate("comments")
+        // find user
+        let user = await User.findById(req.user.id)
+        .populate("todos");
+
+        //get all users' todos
+        let todos = user.todos;
 
         res.status(200).json({
             count: todos.length,

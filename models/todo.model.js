@@ -16,7 +16,11 @@ const todoSchema = new mongoose.Schema(
         priority: {
             type: String,
         },
-        labels: [{type: String}],
+        labels: [
+            {
+                type: String,
+            },
+        ],
         comments: [
             {
                 type: mongoose.Schema.Types.ObjectId,
