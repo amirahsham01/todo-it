@@ -23,9 +23,6 @@ app.use("/api/todos/comments", require("./routes/comment.route"));
 // app.get("*", (req, res) => {
 //     res.status(404).json({ message: "looks like you're lost", code: "EB404" });
 // });
-app.get('*', function (req, res) {
-    res.sendFile('index.html');
-  });
 
 //added some more
 app.get("/*", (req, res) => {
